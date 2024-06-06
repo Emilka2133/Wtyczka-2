@@ -57,6 +57,27 @@ class qgis_klasaDialog(QtWidgets.QDialog, FORM_CLASS):
         dh = h_2 - h_1
         self.label_wynik_dh.setText(f'{dh} m')
         
+    def calculate_pole(self):
+        warstwa = self.mMapLayerComboBox.currentLayer()
+        features = warstwa.selectedFeatures()
+        punkty = []
+        id_punktow = []
+        for p in features:
+            geom = p.geometry()
+            punkt = geom.asPoint()
+            punkty.append(QgsPointXY(punkt.x(), punkt.y()))
+            id_punktow.append(p.id())
+        n = len(punkty)
+        pol_e = 0.0
+        for i in range(n):
+            x1, y1 = punkty[i].x(), punkty[i].y()
+            x2, y2 = punkty[(i + 1) % n].x(), punkty[(i + 1) % n].y()
+            #pol_e += (x1 * y2) - (x2 * y1)
+            pol_e = (x1 + x2)*(y2 - y1)
+            pole=abs(pol_e/2)
+            i=+1
+        self.label_wynik_pole.setText(f'{pole} m2')
+        
 
         
 
