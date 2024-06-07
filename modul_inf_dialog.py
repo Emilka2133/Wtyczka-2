@@ -57,7 +57,7 @@ class qgis_klasaDialog(QtWidgets.QDialog, FORM_CLASS):
             return
         features = warstwa.selectedFeatures()
         if len(features) != 2:
-            QMessageBox.warning(self,'Błąd','Należy wybrać dokładnie 2 punkty')
+            QMessageBox.warning(self,'Błąd','Na obecnej warstwie nie wybrano dokładnie 2 punktów.')
             return 
         try:
             h_1 = float(features[0]['wysokosc'])
@@ -80,7 +80,7 @@ class qgis_klasaDialog(QtWidgets.QDialog, FORM_CLASS):
             return
         features = warstwa.selectedFeatures()
         if len(features) <3:
-            QMessageBox.warning(self,'Błąd','Należy wybrać conajmniej 3 punkty')
+            QMessageBox.warning(self,'Błąd',' Na obecnej warstwie nie wybrano co najmniej 3 punktów. ')
             return
         punkty = []
         id_punktow = []
