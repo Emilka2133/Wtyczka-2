@@ -51,6 +51,21 @@ class qgis_klasaDialog(QtWidgets.QDialog, FORM_CLASS):
         self.pushButton_oblicz_pole.clicked.connect(self.calculate_pole)
     
     def calculate_dh(self):
+        """
+        Funkcja licząca różnicę wysokosci między dwoma punktami.
+
+        Parameters
+        ----------
+        Parametry pobrane za pomocą self. 
+        h_1, h_2 - float
+        h_1, h_2 - wysokosc punktu 1 i 2
+
+        Returns
+        -------
+        dh - float
+        dh - różnica wysokosci między dwoma punktami [m]
+
+        """
         warstwa = self.mMapLayerComboBox.currentLayer()
         if not warstwa or warstwa.wkbType() != QgsWkbTypes.Point:
             QMessageBox.warning(self, 'Błąd', 'Proszę wybrać warstwę punktową')
@@ -74,6 +89,21 @@ class qgis_klasaDialog(QtWidgets.QDialog, FORM_CLASS):
         
         
     def calculate_pole(self):
+        """
+        Funkcja licząca pole pomiędzy conajmniej trzema punktami.
+
+        Parameters
+        ----------
+        Parametry pobrane za pomocą self. 
+        x, y - float
+        x, y - współrzędne conajmniej trzech punktów
+
+        Returns
+        -------
+        pole - int
+        pole - pole pomiędzy conajmniej trzema punktami [m²]
+
+        """
         warstwa = self.mMapLayerComboBox.currentLayer()
         if not warstwa or warstwa.wkbType() != QgsWkbTypes.Point:
             QMessageBox.warning(self, 'Błąd', 'Proszę wybrać warstwę punktową')
